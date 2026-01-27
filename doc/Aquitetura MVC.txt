@@ -1,0 +1,8 @@
+Este projeto tem como objetivo servir de exemplo de utilização das melhores
+práticas de desenvolvimento em python. 
+
+Aquitetura MVC (Model, Controler e View)
+
+Models ....: Estuturação e manipulação dos dados.
+Controlers : Lógica do projeto.
+Views......: Interface de interação com o usuário.

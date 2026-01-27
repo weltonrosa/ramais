@@ -1,0 +1,11 @@
+pylint:
+  disable:
+    - django-not-available    
+    - wrong-import-position 
+      # Isso instrui o Pylint a ignorar esses avisos, permitindo que os imports
+      # sejam posicionados após a configuração do sys.path sem gerar erros.
+      # Por que essa abordagem?
+      # Reordenar os imports para o topo não é viável aqui, pois os imports 
+      # dependem do sys.path modificado.
+      # Desabilitar a verificação é apropriado para projetos que precisam de 
+      #configuração dinâmica de caminhos, mantendo o código funcional e limpo.
