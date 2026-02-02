@@ -4,16 +4,18 @@ Cadastro de Ramais
 Autor: Welton C. O. Rosa
 Data: 26/01/2026
 
-Ultima Atualização: 28/01/2026
+Ultima Atualização: 02/02/2026
 Atualizado por: Welton C. O. Rosa
 
 Versão: 1.0
 Python Version: 
-Bibliotecas: os, sys, Path, logging
+Bibliotecas: os, sys, Path, logging, re
 Funções disponíveis: 
 
 Exemplo de uso:
     
+python src/views/index.py ou
+python -m src.views.index
 
 '''
 
