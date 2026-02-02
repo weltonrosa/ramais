@@ -20,6 +20,7 @@ Exemplo de uso:
 import logging
 import os
 import sys
+import re
 from pathlib import Path
 from logging import CRITICAL, ERROR, WARNING, INFO, DEBUG, NOTSET, basicConfig
 from logging import FileHandler, StreamHandler
@@ -35,6 +36,7 @@ file_handler = FileHandler('ramais.log', encoding='utf-8', mode='a')
 file_handler.setLevel(WARNING)
 
 stream_handler = StreamHandler()
+stream_handler.setLevel(WARNING)
 
 basicConfig(
     level = DEBUG,
@@ -48,7 +50,8 @@ margem2 = ' ' * 10
 separador = '=' * 80
 
 decisao = -1
-while decisao != 0:    
+while decisao != 0:
+    os.system('cls' if os.name == 'nt' else 'clear')    
     print(margem1 + 'Menu Principal\n'
           + margem2 + separador + '\n\n'
           + margem1 +'[1] - Cadastrar Pessoa \n'
@@ -58,9 +61,10 @@ while decisao != 0:
          )
     try:
         decisao = int(input(margem1 + 'Escolha uma opção: '))
+        logging.debug('Opção escolhida no menu principal: %d', decisao)
     except ValueError as e:
-        print(margem1 +'Opção inválida. Por favor, digite um número.')
-        logging.error('Erro de entrada inválida: %s', e)
+        input(margem1 +'Opção inválida, pressione <<Enter>> para continuar.')
+        logging.error('Erro de entrada inválida no menu principal: %s', e)
         decisao = -1  # Continua no loop
         continue
 
@@ -70,19 +74,30 @@ while decisao != 0:
         print(margem2 + separador + '\n')
         nome      = input(margem2 + 'Digite o nome.....: ')
         sobrenome = input(margem2 + 'Digite o sobrenome: ')
-        idade     = int(input(margem2 + 'Digite a idade....: '))
-        ramal     = input(margem2 + 'Digite o Ramal......: ')
-        print(margem2 + separador + '\n')
+        # Valida idade: somente números
+        while True:
+            idade_str = input(margem2 + 'Digite a idade....: ').strip()
+            if re.fullmatch(r'\d+', idade_str):
+                idade = int(idade_str)
+                break
+            print(margem2 + 'Idade inválida. Digite apenas números.')
+            logging.error('Erro idade inválida: %s', e)
+        # Valida ramal: somente números (mantém como string)
+        while True:
+            ramal = input(margem2 + 'Digite o Ramal....: ').strip()
+            if re.fullmatch(r'\d+', ramal):
+                break
+            print(margem2 + 'Ramal inválido. Digite apenas números.')
+            logging.error('Erro ramal inválido: %s', e)
+        print('\n' + margem2 + separador + '\n')
 
         try:
             pessoa = Pessoa(nome, sobrenome, idade, ramal)
             PessoaController.salvar_pessoa(pessoa)
-            print(margem1 + 'Pessoa cadastrada com sucesso!')
-            input(margem1 + 'Pressione <<Enter>> para continuar...')
+            print(margem2 + 'Pessoa cadastrada com sucesso!')
             logging.info('Pessoa cadastrada: %s', pessoa.nome_completo())
-            os.system('cls' if os.name == 'nt' else 'clear')
         except Exception as e:
-            print(f"{margem1} Erro ao cadastrar pessoa: {e}")
+            print(f"{margem2} Erro ao cadastrar pessoa: {e}")
             logging.error('Erro ao cadastrar pessoa: %s', e)
             os.system('cls' if os.name == 'nt' else 'clear')
             continue

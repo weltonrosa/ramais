@@ -1,0 +1,5 @@
+
+2026-02-02 15:30:38,956: ERROR:-* Erro de entrada inválida: invalid literal for int() with base 10: 'a'
+2026-02-02 15:30:42,611: ERROR:-* Erro de entrada inválida: invalid literal for int() with base 10: 'a'
+2026-02-02 15:42:59,838: ERROR:-* Erro de entrada inválida: invalid literal for int() with base 10: 'a'
+2026-02-02 15:43:19,862: ERROR:-* Erro de entrada inválida: invalid literal for int() with base 10: 'b'
