@@ -5,3 +5,5 @@
 2026-01-28 13:54:12,619: INFO:-* Pessoa cadastrada: Welton Rosa
 2026-01-28 13:54:25,187: INFO:-* Pessoa cadastrada: Dinah Quinteiro
 2026-01-28 14:52:38,702: INFO:-* Pessoa cadastrada: Welton Rosa
+2026-02-03 15:06:14,119: ERROR:-* Erro de entrada inválida no menu principal: invalid literal for int() with base 10: 'a'
+2026-02-03 15:06:51,560: ERROR:-* Erro de entrada inválida no menu principal: invalid literal for int() with base 10: 'b'
